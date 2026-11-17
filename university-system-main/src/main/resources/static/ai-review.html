@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>UTP+class :: Revisión Docente IA</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+        <style>
+            body { font-family: 'Lato', sans-serif; background-color: #f8fafc; }
+            ::-webkit-scrollbar { width: 6px; }
+            ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        </style>
+    </head>
+    <body class="text-neutral-02 flex overflow-x-hidden min-h-screen">
+
+    <aside class="w-[88px] bg-[#000F37] flex flex-col items-center py-5 fixed h-full z-20">
+        <div class="mb-6 text-white cursor-pointer hover:opacity-80 transition-opacity">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </div>
+
+        <nav class="flex flex-col w-full relative">
+
+            <a href="dashboard.html" class="flex flex-col items-center justify-center h-[80px] text-[#a5b0c0] hover:text-white transition-colors">
+                <svg width="24" height="24" viewBox="0 0 1024 1024" class="fill-current mb-1"><path d="M853.333 42.667h-576c-81.067 0-149.333 68.267-149.333 149.333v640c0 81.067 68.267 149.333 149.333 149.333h576c25.6 0 42.667-17.067 42.667-42.667v-853.333c0-25.6-17.067-42.667-42.667-42.667zM277.333 128h533.333v554.667h-533.333c-21.333 0-42.667 4.267-64 17.067v-507.733c0-34.133 29.867-64 64-64zM277.333 896c-34.133 0-64-29.867-64-64s29.867-64 64-64h533.333v128h-533.333z"></path></svg>
+                <span class="text-[12px] text-center">Cursos</span>
+            </a>
+
+            <a href="#" class="flex flex-col items-center justify-center h-[80px] text-[#a5b0c0] hover:text-white transition-colors">
+                <svg width="24" height="24" viewBox="0 0 1024 1024" class="fill-current mb-1"><path d="M128 938.667c-12.8 0-21.333-4.267-29.867-12.8-12.8-12.8-17.067-29.867-8.533-42.667l76.8-226.133c-25.6-51.2-38.4-110.933-38.4-166.4 0-153.6 85.333-294.4 226.133-362.667 55.467-29.867 119.467-42.667 179.2-42.667 0 0 0 0 0 0h21.333c209.067 12.8 371.2 174.933 384 379.733v25.6c0 64-12.8 123.733-42.667 183.467-68.267 136.533-209.067 221.867-362.667 221.867-55.467 0-115.2-12.8-166.4-34.133l-226.133 76.8c-4.267 0-8.533 0-12.8 0zM533.333 170.667c-51.2 0-98.133 12.8-140.8 34.133-110.933 55.467-179.2 162.133-179.2 285.867 0 51.2 12.8 98.133 34.133 140.8 4.267 8.533 4.267 21.333 4.267 34.133l-55.467 162.133 162.133-55.467c12.8-4.267 21.333-4.267 34.133 4.267 42.667 21.333 93.867 34.133 140.8 34.133 123.733 0 230.4-68.267 285.867-174.933 21.333-42.667 34.133-93.867 34.133-140.8 0 0 0 0 0 0v-25.6c-8.533-162.133-136.533-290.133-302.933-298.667h-17.067c0 0 0 0 0 0z"></path></svg>
+                <span class="text-[12px] text-center">Chat</span>
+            </a>
+
+            <a href="grade-record.html" class="flex flex-col items-center justify-center h-[80px] text-[#a5b0c0] hover:text-white transition-colors">
+                <i class="fa-solid fa-upload text-xl mb-1"></i>
+                <span class="text-[12px] text-center">Subir Notas</span>
+            </a>
+
+            <a href="#" class="flex flex-col items-center justify-center h-[80px] bg-[#e6ebf5] text-primary-dark relative">
+                <div class="absolute left-0 top-0 bottom-0 w-1 bg-[#f94c61]"></div>
+                    <i class="fa-solid fa-user-check text-2xl mb-1 text-[#0661fc]"></i>
+                    <span class="text-[12px] text-center font-bold">Revisión IA</span>
+            </a>
+
+        </nav>
+    </aside>
+
+    <div class="ml-[88px] flex-1 flex flex-col">
+
+        <header class="bg-white h-[64px] flex items-center justify-between px-6 shadow-sm relative z-10 w-full">
+        <div class="flex items-center">
+            <img src="/static/media/new-logo.c86d23e3.svg" class="w-[151px] h-[25px] ml-[24px] object-contain" alt="UTP" onerror="this.src='https://sso.utp.edu.pe/auth/resources/4i3s1/login/utp-pao/images/logo-pao-class.png'">
+        </div>
+
+        <div class="flex items-center space-x-5">
+            <button class="relative text-[#4a4f55] hover:text-primary-dark transition-colors">
+                <i class="fa-regular fa-bell text-xl"></i>
+                <span id="badge-notificaciones"
+                      class="hidden absolute -top-1.5 -right-2 bg-[#FABD00] text-[#000f37] text-[9px] font-bold px-1 rounded-full border border-white">0
+                </span>
+            </button>
+
+            <div class="relative pl-4 border-l border-gray-200">
+                <div onclick="toggleDropdown(event)" class="flex items-center space-x-3 cursor-pointer select-none">
+                    <div class="text-right leading-tight hidden md:block">
+                        <p id="user-name-display" class="text-[13px] font-bold text-gray-800">Cargando...</p>
+                        <p id="user-role-display" class="text-[11px] text-gray-500">Cargando...</p>
+                    </div>
+                    <div class="h-10 w-10 flex items-center justify-center">
+                        <img class="rounded-full" width="40" height="40" alt="Avatar" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix&backgroundColor=1db5b2">
+                    </div>
+                    <i class="fa-solid fa-chevron-down text-[10px] text-gray-600"></i>
+                </div>
+
+                <div id="logout-dropdown" class="hidden absolute right-0 mt-2 w-44 bg-white rounded-lg shadow-xl py-1 border border-gray-100 z-50">
+                    <button onclick="cerrarSesion()" class="w-full text-left px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 font-bold flex items-center transition-colors rounded-b-lg">
+                        <i class="fa-solid fa-right-from-bracket mr-2"></i> Cerrar Sesión
+                    </button>
+                </div>
+            </div>
+            </div>
+        </header>
+
+        <main class="flex-1 p-6">
+            <div class="max-w-[1800px] w-full mx-auto px-2">
+                <div class="flex justify-between items-end mb-6 border-b border-gray-200 pb-4">
+                    <div>
+                        <h1 class="text-2xl font-black text-[#000F37]">Bandeja de Revisión de Tutorías (IA)</h1>
+                        <p class="text-sm text-gray-500 mt-1">Revisa y aprueba el material de refuerzo generado automáticamente para tus alumnos en riesgo.</p>
+                    </div>
+                    <div class="bg-blue-50 text-blue-700 px-4 py-2 rounded-lg font-bold shadow-sm">
+                        <i class="fa-solid fa-clock-rotate-left mr-2"></i> <span id="contador-pendientes">0</span> Pendientes
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                    <table class="w-full text-sm text-left">
+                        <thead class="text-xs text-gray-500 uppercase bg-gray-50 border-b">
+                        <tr>
+                            <th class="px-6 py-4">Estudiante</th>
+                            <th class="px-6 py-4">Curso y Evaluación</th>
+                            <th class="px-6 py-4 text-center">Nota</th>
+                            <th class="px-6 py-4">Estado Material IA</th>
+                            <th class="px-6 py-4 text-center">Acción</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tabla-pendientes" class="text-gray-700">
+                        <tr><td colspan="5" class="text-center py-8 text-gray-500"><i class="fa-solid fa-spinner fa-spin mr-2"></i>Cargando pendientes...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="modal-revision" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-4xl flex flex-col max-h-[90vh]">
+
+            <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center bg-gray-50 rounded-t-lg">
+                <h3 class="text-lg font-bold text-[#000F37]"><i class="fa-solid fa-user-check text-[#10B981] mr-2"></i> Validar Material de Refuerzo</h3>
+                <button onclick="cerrarModal()" class="text-gray-400 hover:text-gray-700"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+
+            <div class="p-6 overflow-y-auto flex-1 bg-[#f8fafc]">
+                <div class="flex space-x-4 mb-4 text-sm">
+                    <div class="bg-white px-4 py-2 border rounded shadow-sm flex-1"><span class="text-gray-500">Alumno:</span> <strong id="modal-alumno">...</strong></div>
+                    <div class="bg-red-50 text-red-700 px-4 py-2 border border-red-200 rounded shadow-sm"><span class="opacity-75">Nota Obtenida:</span> <strong id="modal-nota" class="text-lg">00</strong></div>
+                </div>
+
+                <label class="block text-sm font-bold text-gray-700 mb-2">Contenido redactado por Gemini (Puedes editarlo antes de enviarlo):</label>
+                <textarea id="modal-contenido-ia" class="w-full h-80 p-4 border border-gray-300 rounded shadow-inner font-mono text-[13px] leading-relaxed focus:outline-none focus:border-[#10B981] resize-none" spellcheck="false"></textarea>
+            </div>
+
+            <div class="px-6 py-4 border-t border-gray-200 bg-gray-50 flex justify-between rounded-b-lg">
+                <button id="btn-rechazar" onclick="rechazarMaterial(event)" class="text-red-600 hover:bg-red-50 px-4 py-2 rounded font-bold transition-colors">
+                    <i class="fa-solid fa-trash-can mr-1"></i> Descartar
+                </button>
+                <div class="space-x-3">
+                    <button onclick="cerrarModal()" class="text-gray-600 bg-white border border-gray-300 hover:bg-gray-100 px-4 py-2 rounded font-bold transition-colors">Cancelar</button>
+                    <button id="btn-aprobar" onclick="aprobarMaterial(event)" class="bg-[#10B981] hover:bg-emerald-600 text-white px-6 py-2 rounded font-bold shadow-sm transition-colors flex items-center">
+                        <i class="fa-solid fa-paper-plane mr-2"></i> Aprobar y Enviar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentReviewId = null;
+        let pendientesGlobal = [];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const username = localStorage.getItem("username") || "Invitado";
+            const role = localStorage.getItem("userRole") || "TEACHER";
+
+            document.getElementById("user-name-display").textContent =
+                "Hola, " + username;
+
+            document.getElementById("user-role-display").textContent =
+                role;
+
+            if (role !== 'TEACHER') {
+                alert('Acceso denegado. Vista exclusiva para Docentes.');
+                window.location.href = 'dashboard.html';
+                return;
+            }
+
+            cargarPendientes();
+        });
+
+        function cargarPendientes() {
+            const role = localStorage.getItem('userRole') || 'TEACHER';
+            const tbody = document.getElementById('tabla-pendientes');
+
+            fetch('/api/teacher/reviews/pending', {
+                method: 'GET',
+                headers: {
+                    'X-User-Role': role,
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    if (!response.ok) throw new Error('Error al conectar con el servidor');
+                    return response.json();
+                })
+                .then(data => {
+                    pendientesGlobal = data;
+
+                    // Actualiza los contadores de la UI
+                    document.getElementById('contador-pendientes').textContent = data.length;
+
+                    const badge = document.getElementById('badge-notificaciones');
+                    if(data.length > 0) {
+                        badge.textContent = data.length;
+                        badge.classList.remove('hidden');
+                    } else {
+                        badge.classList.add('hidden');
+                    }
+
+                    tbody.innerHTML = '';
+
+                    if (data.length === 0) {
+                        tbody.innerHTML = '<tr><td colspan="5" class="text-center py-8 text-gray-500">No hay recomendaciones pendientes de revisión. ¡Todo al día!</td></tr>';
+                        return;
+                    }
+
+                    data.forEach(item => {
+                        const fila = `
+                            <tr class="border-b hover:bg-gray-50 transition-colors" id="fila-${item.id}">
+                                <td class="px-6 py-4 font-bold text-gray-900">${item.studentName}</td>
+                                <td class="px-6 py-4">
+                                    <div class="text-[#000F37] font-bold">${item.courseName}</div>
+                                    <div class="text-xs text-gray-500">${item.evaluationTitle}</div>
+                                </td>
+                                <td class="px-6 py-4 text-center">
+                                    <span class="bg-red-100 text-red-700 font-bold px-3 py-1 rounded text-lg">${item.gradeObtained}</span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span class="bg-yellow-100 text-yellow-800 text-xs font-bold px-2 py-1 rounded border border-yellow-200">
+                                        <i class="fa-regular fa-clock mr-1"></i> Esperando Revisión
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 text-center">
+                                    <button onclick="abrirModal(${item.id})" class="bg-[#0661fc] hover:bg-blue-700 text-white px-4 py-1.5 rounded text-sm font-bold shadow-sm transition-colors">
+                                        <i class="fa-solid fa-eye mr-1"></i> Revisar
+                                    </button>
+                                </td>
+                            </tr>
+                        `;
+                        tbody.insertAdjacentHTML('beforeend', fila);
+                    });
+                })
+                .catch(error => {
+                    console.error(error);
+                    tbody.innerHTML = '<tr><td colspan="5" class="text-center py-8 text-red-500"><i class="fa-solid fa-triangle-exclamation mr-2"></i> Esperando conexión con Spring Boot.</td></tr>';
+                });
+        }
+
+        function abrirModal(id) {
+            currentReviewId = id;
+            const item = pendientesGlobal.find(i => i.id === id);
+
+            if(!item) return;
+
+            document.getElementById('modal-alumno').textContent = item.studentName;
+            document.getElementById('modal-nota').textContent = item.gradeObtained;
+            document.getElementById('modal-contenido-ia').value = item.recommendationContent;
+
+            document.getElementById('modal-revision').classList.remove('hidden');
+        }
+
+        function cerrarModal() {
+            document.getElementById('modal-revision').classList.add('hidden');
+            currentReviewId = null;
+        }
+
+        function aprobarMaterial(event) {
+            const contenidoEditado = document.getElementById('modal-contenido-ia').value;
+            const role = localStorage.getItem('userRole') || 'TEACHER';
+
+            const btn = event.currentTarget;
+            const textOriginal = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Aprobando...';
+            btn.disabled = true;
+
+            fetch(`/api/teacher/reviews/${currentReviewId}/approve`, {
+                method: 'PUT',
+                headers: {
+                    'X-User-Role': role,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ editedContent: contenidoEditado })
+            })
+                .then(response => {
+                    if (!response.ok) throw new Error('Error al aprobar');
+
+                    document.getElementById(`fila-${currentReviewId}`).remove();
+                    cerrarModal();
+
+                    actualizarContadores();
+                    alert('¡Material aprobado! El estudiante ya puede verlo en su panel.');
+                })
+                .catch(error => {
+                    alert('Ocurrió un error de red al intentar aprobar.');
+                })
+                .finally(() => {
+                    btn.innerHTML = textOriginal;
+                    btn.disabled = false;
+                });
+        }
+
+        function rechazarMaterial(event) {
+            if(!confirm('¿Estás seguro de descartar este material generado por la IA?')) return;
+
+            const role = localStorage.getItem('userRole') || 'TEACHER';
+            const btn = event.currentTarget;
+            const textOriginal = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-1"></i> Descartando...';
+            btn.disabled = true;
+
+            fetch(`/api/teacher/reviews/${currentReviewId}/reject`, {
+                method: 'PUT',
+                headers: {
+                    'X-User-Role': role
+                }
+            })
+                .then(response => {
+                    if (!response.ok) throw new Error('Error al rechazar');
+
+                    document.getElementById(`fila-${currentReviewId}`).remove();
+                    cerrarModal();
+
+                    actualizarContadores();
+                })
+                .catch(error => {
+                    alert('Ocurrió un error al intentar descartar.');
+                })
+                .finally(() => {
+                    btn.innerHTML = textOriginal;
+                    btn.disabled = false;
+                });
+        }
+
+        function actualizarContadores() {
+            const contador = document.getElementById('contador-pendientes');
+            const badge = document.getElementById('badge-notificaciones');
+            const nuevoTotal = Math.max(0, parseInt(contador.textContent) - 1);
+
+            contador.textContent = nuevoTotal;
+
+            if (nuevoTotal === 0) {
+                badge.classList.add('hidden');
+                document.getElementById('tabla-pendientes').innerHTML = '<tr><td colspan="5" class="text-center py-8 text-gray-500">No hay recomendaciones pendientes de revisión. ¡Todo al día!</td></tr>';
+            } else {
+                badge.textContent = nuevoTotal;
+            }
+        }
+
+        function toggleDropdown(event) {
+            event.stopPropagation();
+            const dropdown = document.getElementById('logout-dropdown');
+            dropdown.classList.toggle('hidden');
+        }
+
+        function cerrarSesion() {
+            localStorage.clear();
+            window.location.href = 'login.html';
+        }
+
+        window.addEventListener('click', () => {
+            const dropdown = document.getElementById('logout-dropdown');
+            if (dropdown && !dropdown.classList.contains('hidden')) {
+                dropdown.classList.add('hidden');
+            }
+        });
+    </script>
+    </body>
+</html>

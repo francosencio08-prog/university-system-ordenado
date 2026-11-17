@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UTP+class :: Creador de Sílabo</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+    <style>
+        body { font-family: 'Lato', sans-serif; background-color: #f8fafc; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+
+        .accordion-content { transition: max-height 0.3s ease-out; overflow: hidden; max-height: 0; }
+        .accordion-content.open { max-height: 1000px; }
+        .topic-item, .eval-item { animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="text-neutral-02 flex overflow-x-hidden min-h-screen">
+
+<aside class="w-[88px] bg-[#000F37] flex flex-col items-center py-5 fixed h-full z-20">
+    <div class="mb-6 text-white cursor-pointer hover:opacity-80 transition-opacity">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+    </div>
+
+    <nav class="flex flex-col w-full relative">
+
+        <a href="dashboard.html" class="flex flex-col items-center justify-center h-[80px] text-[#a5b0c0] hover:text-white transition-colors">
+            <svg width="24" height="24" viewBox="0 0 1024 1024" class="fill-current mb-1"><path d="M853.333 42.667h-576c-81.067 0-149.333 68.267-149.333 149.333v640c0 81.067 68.267 149.333 149.333 149.333h576c25.6 0 42.667-17.067 42.667-42.667v-853.333c0-25.6-17.067-42.667-42.667-42.667zM277.333 128h533.333v554.667h-533.333c-21.333 0-42.667 4.267-64 17.067v-507.733c0-34.133 29.867-64 64-64zM277.333 896c-34.133 0-64-29.867-64-64s29.867-64 64-64h533.333v128h-533.333z"></path></svg>
+            <span class="text-[12px] text-center">Cursos</span>
+        </a>
+
+        <a href="#" class="flex flex-col items-center justify-center h-[80px] text-[#a5b0c0] hover:text-white transition-colors">
+            <svg width="24" height="24" viewBox="0 0 1024 1024" class="fill-current mb-1"><path d="M128 938.667c-12.8 0-21.333-4.267-29.867-12.8-12.8-12.8-17.067-29.867-8.533-42.667l76.8-226.133c-25.6-51.2-38.4-110.933-38.4-166.4 0-153.6 85.333-294.4 226.133-362.667 55.467-29.867 119.467-42.667 179.2-42.667 0 0 0 0 0 0h21.333c209.067 12.8 371.2 174.933 384 379.733v25.6c0 64-12.8 123.733-42.667 183.467-68.267 136.533-209.067 221.867-362.667 221.867-55.467 0-115.2-12.8-166.4-34.133l-226.133 76.8c-4.267 0-8.533 0-12.8 0zM533.333 170.667c-51.2 0-98.133 12.8-140.8 34.133-110.933 55.467-179.2 162.133-179.2 285.867 0 51.2 12.8 98.133 34.133 140.8 4.267 8.533 4.267 21.333 4.267 34.133l-55.467 162.133 162.133-55.467c12.8-4.267 21.333-4.267 34.133 4.267 42.667 21.333 93.867 34.133 140.8 34.133 123.733 0 230.4-68.267 285.867-174.933 21.333-42.667 34.133-93.867 34.133-140.8 0 0 0 0 0 0v-25.6c-8.533-162.133-136.533-290.133-302.933-298.667h-17.067c0 0 0 0 0 0z"></path></svg>
+            <span class="text-[12px] text-center">Chat</span>
+        </a>
+
+        <a href="#" class="flex flex-col items-center justify-center h-[80px] bg-[#e6ebf5] text-[#000F37] relative">
+            <div class="absolute left-0 top-0 bottom-0 w-1 bg-[#f94c61]"></div>
+            <i class="fa-solid fa-plus-circle text-2xl mb-1"></i>
+            <span class="text-[12px] text-center font-bold leading-tight">Crear Curso</span>
+        </a>
+
+        <a href="section-registration.html" class="flex flex-col items-center justify-center h-[80px] text-[#a5b0c0] hover:text-white transition-colors">
+            <i class="fa-solid fa-puzzle-piece text-xl mb-1"></i>
+            <span class="text-[12px] text-center">Secciones</span>
+        </a>
+
+        <a href="enrollment-registration.html" class="flex flex-col items-center justify-center h-[80px] text-[#a5b0c0] hover:text-white transition-colors">
+            <i class="fa-solid fa-address-book text-xl mb-1"></i>
+            <span class="text-[12px] text-center">Matrículas</span>
+        </a>
+
+        <a href="student-registration.html" class="flex flex-col items-center justify-center h-[80px] text-[#a5b0c0] hover:text-white transition-colors">
+            <i class="fa-solid fa-users-gear text-xl mb-1"></i>
+            <span class="text-[12px] text-center">Estudiantes</span>
+        </a>
+
+        <a href="teacher-registration.html" class="flex flex-col items-center justify-center h-[80px] text-[#a5b0c0] hover:text-white transition-colors">
+            <i class="fa-solid fa-chalkboard-user text-xl mb-1"></i>
+            <span class="text-[12px] text-center">Docentes</span>
+        </a>
+
+        <a href="ai-settings.html" class="flex flex-col items-center justify-center h-[80px] text-[#a5b0c0] hover:text-white transition-colors">
+            <i class="fa-solid fa-microchip text-xl mb-1"></i>
+            <span class="text-[12px] text-center">Admin IA</span>
+        </a>
+    </nav>
+</aside>
+
+<div class="ml-[88px] flex-1 flex flex-col h-screen overflow-hidden">
+
+    <header class="bg-white h-[64px] flex items-center justify-between px-6 shadow-sm relative z-10 w-full shrink-0">
+        <div class="flex items-center">
+            <img src="/static/media/new-logo.c86d23e3.svg" class="w-[151px] h-[25px] ml-[24px] object-contain" alt="UTP" onerror="this.src='https://sso.utp.edu.pe/auth/resources/4i3s1/login/utp-pao/images/logo-pao-class.png'">
+        </div>
+
+        <div class="flex items-center space-x-5">
+            <button class="relative text-[#4a4f55] hover:text-[#000F37] transition-colors">
+                <i class="fa-regular fa-bell text-xl"></i>
+                <span id="badge-notificaciones" class="hidden absolute -top-1.5 -right-2 bg-[#FABD00] text-[#000f37] text-[9px] font-bold px-1 rounded-full border border-white">
+                    0
+                </span>
+            </button>
+
+            <div class="relative pl-4 border-l border-gray-200">
+                <div onclick="toggleDropdown(event)" class="flex items-center space-x-3 cursor-pointer select-none">
+                    <div class="text-right leading-tight hidden md:block">
+                        <p id="user-name-display" class="text-[13px] font-bold text-gray-800">Cargando...</p>
+                        <p id="user-role-display" class="text-[11px] text-gray-500">Cargando...</p>
+                    </div>
+                    <div class="h-10 w-10 flex items-center justify-center">
+                        <img class="rounded-full" width="40" height="40" alt="Avatar" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix&backgroundColor=1db5b2">
+                    </div>
+                    <i class="fa-solid fa-chevron-down text-[10px] text-gray-600"></i>
+                </div>
+
+                <div id="logout-dropdown" class="hidden absolute right-0 mt-2 w-44 bg-white rounded-lg shadow-xl py-1 border border-gray-100 z-50">
+                    <button onclick="cerrarSesion()" class="w-full text-left px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 font-bold flex items-center transition-colors rounded-b-lg">
+                        <i class="fa-solid fa-right-from-bracket mr-2"></i> Cerrar Sesión
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-1 p-8 overflow-y-auto w-full max-w-[1200px] mx-auto pb-32">
+
+        <div class="flex justify-between items-end mb-6 border-b border-gray-200 pb-4">
+            <div>
+                <h1 class="text-2xl font-black text-[#000F37]">Diseño de Sílabo (Crear Curso)</h1>
+                <p class="text-sm text-gray-500 mt-1">Configura el curso, sus 18 módulos (semanas), temas y cronograma de evaluaciones.</p>
+            </div>
+            <div class="text-right">
+                <div class="text-[11px] text-gray-400 font-bold uppercase mb-1">Peso Total Evaluaciones</div>
+                <div id="peso-total-display" class="text-2xl font-black text-red-500">0%</div>
+            </div>
+        </div>
+
+        <form id="form-curso" onsubmit="guardarCurso(event)">
+
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mb-8">
+                <h3 class="text-lg font-bold text-[#000F37] mb-4 border-b pb-2"><i class="fa-solid fa-book-open text-[#0661fc] mr-2"></i> Datos Generales del Curso</h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-bold text-gray-700 mb-1">Nombre del Curso <span class="text-red-500">*</span></label>
+                        <input type="text" id="courseName" required placeholder="Ej. Programación Orientada a Objetos" class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:border-[#0661fc]">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-1">Código del Curso <span class="text-red-500">*</span></label>
+                        <input type="text" id="courseCode" required placeholder="Ej. CS201" class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:border-[#0661fc]">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-1">Créditos Universitarios <span class="text-red-500">*</span></label>
+                        <input type="number" id="courseCredits" required min="1" max="10" placeholder="Ej. 4" class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:border-[#0661fc]">
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-4 flex items-center justify-between">
+                <h3 class="text-lg font-bold text-[#000F37]"><i class="fa-solid fa-layer-group text-[#0661fc] mr-2"></i> Planificación por Módulo (1 a 18)</h3>
+                <button type="button" onclick="expandirTodos()" class="text-xs text-blue-600 hover:underline font-bold">Expandir Todos</button>
+            </div>
+
+            <div id="modulos-container" class="space-y-4">
+            </div>
+
+            <div class="fixed bottom-0 left-[88px] right-0 bg-white border-t border-gray-200 p-4 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] z-10 flex justify-end px-12">
+                <button type="button" class="text-gray-600 bg-white border border-gray-300 hover:bg-gray-100 px-6 py-2 rounded font-bold transition-colors mr-3">Cancelar</button>
+                <button type="submit" id="btn-guardar" class="bg-[#0661fc] hover:bg-blue-700 text-white px-8 py-2 rounded font-bold shadow-sm transition-colors flex items-center opacity-50 cursor-not-allowed" disabled>
+                    <i class="fa-solid fa-save mr-2"></i> Guardar
+                </button>
+            </div>
+        </form>
+    </main>
+</div>
+
+<script>
+    const TOTAL_MODULOS = 18;
+
+    let syllabusData = [];
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const role = localStorage.getItem('userRole') || 'ADMIN';
+        const username = localStorage.getItem('username') || 'Administrador';
+
+        document.getElementById('user-name-display').textContent = 'Hola, ' + username;
+        document.getElementById('user-role-display').textContent = role;
+
+        if (role !== 'ADMIN') {
+            alert('Acceso denegado. Solo administradores pueden crear cursos.');
+            window.location.href = 'dashboard.html';
+            return;
+        }
+
+        inicializarDatosMemoria();
+        renderizarModulos();
+    });
+
+    function toggleDropdown(event) {
+        event.stopPropagation();
+        const dropdown = document.getElementById('logout-dropdown');
+        dropdown.classList.toggle('hidden');
+    }
+
+    function cerrarSesion() {
+        localStorage.clear();
+        window.location.href = 'login.html';
+    }
+
+    window.addEventListener('click', () => {
+        const dropdown = document.getElementById('logout-dropdown');
+        if (dropdown && !dropdown.classList.contains('hidden')) {
+            dropdown.classList.add('hidden');
+        }
+    });
+
+    function inicializarDatosMemoria() {
+        for (let i = 1; i <= TOTAL_MODULOS; i++) {
+            syllabusData.push({
+                moduleNumber: i,
+                topics: [],
+                evaluations: []
+            });
+        }
+    }
+
+    function renderizarModulos() {
+        const container = document.getElementById('modulos-container');
+        container.innerHTML = '';
+
+        syllabusData.forEach(modulo => {
+            const num = modulo.moduleNumber;
+
+            const cantTemas = modulo.topics.length;
+            const cantEvals = modulo.evaluations.length;
+            const badges = `
+                    ${cantTemas > 0 ? `<span class="bg-blue-100 text-blue-800 text-[10px] font-bold px-2 py-0.5 rounded ml-2">${cantTemas} Temas</span>` : ''}
+                    ${cantEvals > 0 ? `<span class="bg-red-100 text-red-800 text-[10px] font-bold px-2 py-0.5 rounded ml-2">${cantEvals} Eval</span>` : ''}
+                `;
+
+            const html = `
+                    <div class="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+
+                        <div class="bg-gray-50 px-5 py-3 flex justify-between items-center cursor-pointer hover:bg-gray-100 transition-colors" onclick="toggleModulo(${num})">
+                            <div class="flex items-center">
+                                <span class="w-8 h-8 rounded-full bg-[#000F37] text-white flex items-center justify-center font-bold text-sm mr-3">${num}</span>
+                                <h4 class="font-bold text-gray-800">Semana ${num}</h4>
+                                ${badges}
+                            </div>
+                            <i id="icono-mod-${num}" class="fa-solid fa-chevron-down text-gray-400 transition-transform"></i>
+                        </div>
+
+                        <div id="content-mod-${num}" class="accordion-content bg-white">
+                            <div class="p-5 border-t border-gray-100 grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                                <div>
+                                    <div class="flex justify-between items-center mb-3">
+                                        <h5 class="text-sm font-bold text-gray-700"><i class="fa-solid fa-list-ul text-[#0661fc] mr-1"></i> Temas de Clase</h5>
+                                        <button type="button" onclick="agregarTemaUI(${num})" class="text-xs bg-blue-50 text-blue-600 hover:bg-blue-100 px-2 py-1 rounded font-bold transition-colors">+ Agregar Tema</button>
+                                    </div>
+                                    <div id="temas-list-${num}" class="space-y-2">
+                                        ${modulo.topics.length === 0 ? '<p class="text-xs text-gray-400 italic">No hay temas registrados.</p>' : ''}
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="flex justify-between items-center mb-3">
+                                        <h5 class="text-sm font-bold text-gray-700"><i class="fa-solid fa-file-pen text-red-500 mr-1"></i> Evaluaciones</h5>
+                                        <button type="button" onclick="agregarEvalUI(${num})" class="text-xs bg-red-50 text-red-600 hover:bg-red-100 px-2 py-1 rounded font-bold transition-colors">+ Agregar Evaluación</button>
+                                    </div>
+                                    <div id="evals-list-${num}" class="space-y-2">
+                                        ${modulo.evaluations.length === 0 ? '<p class="text-xs text-gray-400 italic">No hay evaluaciones programadas.</p>' : ''}
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                `;
+            container.insertAdjacentHTML('beforeend', html);
+
+            modulo.topics.forEach((t, index) => renderizarTemaUnico(num, index, t));
+            modulo.evaluations.forEach((e, index) => renderizarEvalUnica(num, index, e));
+        });
+
+        calcularPesoTotal();
+    }
+
+    function toggleModulo(num) {
+        const content = document.getElementById(`content-mod-${num}`);
+        const icon = document.getElementById(`icono-mod-${num}`);
+        content.classList.toggle('open');
+        icon.style.transform = content.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)';
+    }
+
+    function expandirTodos() {
+        for(let i=1; i<=TOTAL_MODULOS; i++){
+            const content = document.getElementById(`content-mod-${i}`);
+            if(!content.classList.contains('open')) toggleModulo(i);
+        }
+    }
+
+    function agregarTemaUI(modNum) {
+        const moduleIndex = modNum - 1;
+        const nuevoTema = "";
+        syllabusData[moduleIndex].topics.push(nuevoTema);
+        const topicIndex = syllabusData[moduleIndex].topics.length - 1;
+
+        const listContainer = document.getElementById(`temas-list-${modNum}`);
+        if(listContainer.querySelector('p')) listContainer.innerHTML = '';
+
+        renderizarTemaUnico(modNum, topicIndex, nuevoTema);
+        actualizarCabecera(modNum);
+    }
+
+    function renderizarTemaUnico(modNum, topicIndex, valor) {
+        const html = `
+                <div class="topic-item flex items-center space-x-2" id="tema-${modNum}-${topicIndex}">
+                    <div class="w-1.5 h-1.5 rounded-full bg-blue-300"></div>
+                    <input type="text" value="${valor}" onchange="guardarTemaEnMemoria(${modNum}, ${topicIndex}, this.value)" placeholder="Tema..." class="flex-1 border-b border-gray-300 text-sm py-1 focus:outline-none focus:border-[#0661fc] bg-transparent">
+                    <button type="button" onclick="eliminarTema(${modNum}, ${topicIndex})" class="text-gray-400 hover:text-red-500"><i class="fa-solid fa-times"></i></button>
+                </div>
+            `;
+        document.getElementById(`temas-list-${modNum}`).insertAdjacentHTML('beforeend', html);
+    }
+
+    function guardarTemaEnMemoria(modNum, topicIndex, valor) {
+        syllabusData[modNum - 1].topics[topicIndex] = valor;
+    }
+
+    function eliminarTema(modNum, topicIndex) {
+        syllabusData[modNum - 1].topics.splice(topicIndex, 1);
+        renderizarModulos();
+        document.getElementById(`content-mod-${modNum}`).classList.add('open');
+    }
+
+    function agregarEvalUI(modNum) {
+        const moduleIndex = modNum - 1;
+        const nuevaEval = { title: "", weight: 0, evaluationType: "PC_1" };
+        syllabusData[moduleIndex].evaluations.push(nuevaEval);
+        const evalIndex = syllabusData[moduleIndex].evaluations.length - 1;
+
+        const listContainer = document.getElementById(`evals-list-${modNum}`);
+        if(listContainer.querySelector('p')) listContainer.innerHTML = '';
+
+        renderizarEvalUnica(modNum, evalIndex, nuevaEval);
+        actualizarCabecera(modNum);
+    }
+
+    function renderizarEvalUnica(modNum, evalIndex, evalObj) {
+        const html = `
+                <div class="eval-item bg-red-50 p-3 rounded border border-red-100 relative" id="eval-${modNum}-${evalIndex}">
+                    <button type="button" onclick="eliminarEval(${modNum}, ${evalIndex})" class="absolute top-2 right-2 text-red-300 hover:text-red-600"><i class="fa-solid fa-times"></i></button>
+
+                    <div class="mb-2 pr-6">
+                        <input type="text" value="${evalObj.title}" onchange="actualizarEvalEnMemoria(${modNum}, ${evalIndex}, 'title', this.value)" placeholder="Título (Ej. Practica Calificada 1)" class="w-full text-sm font-bold bg-transparent border-b border-red-200 focus:outline-none focus:border-red-500 placeholder-red-300">
+                    </div>
+
+                    <div class="flex space-x-2">
+                        <select onchange="actualizarEvalEnMemoria(${modNum}, ${evalIndex}, 'evaluationType', this.value)" class="w-2/3 text-xs border border-gray-300 rounded p-1.5 focus:outline-none focus:border-[#0661fc]">
+                            <option value="PC_1" ${evalObj.evaluationType === 'PC_1' ? 'selected' : ''}>Practica Calificada 1 (PC1)</option>
+                            <option value="PC_2" ${evalObj.evaluationType === 'PC_2' ? 'selected' : ''}>Practica Calificada 2 (PC2)</option>
+                            <option value="PARCIAL_EXAM" ${evalObj.evaluationType === 'PARCIAL_EXAM' ? 'selected' : ''}>Examen Parcial</option>
+                            <option value="FINAL_EXAM" ${evalObj.evaluationType === 'FINAL_EXAM' ? 'selected' : ''}>Examen Final</option>
+                        </select>
+                        <div class="w-1/3 relative">
+                            <input type="number" min="1" max="100" value="${evalObj.weight || ''}" onchange="actualizarEvalEnMemoria(${modNum}, ${evalIndex}, 'weight', this.value)" placeholder="Peso" class="w-full text-xs border border-gray-300 rounded p-1.5 pr-6 focus:outline-none focus:border-[#0661fc]">
+                            <span class="absolute right-2 top-1.5 text-xs text-gray-500">%</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        document.getElementById(`evals-list-${modNum}`).insertAdjacentHTML('beforeend', html);
+    }
+
+    function actualizarEvalEnMemoria(modNum, evalIndex, campo, valor) {
+        if(campo === 'weight') valor = parseFloat(valor) || 0;
+        syllabusData[modNum - 1].evaluations[evalIndex][campo] = valor;
+        calcularPesoTotal();
+    }
+
+    function eliminarEval(modNum, evalIndex) {
+        syllabusData[modNum - 1].evaluations.splice(evalIndex, 1);
+        renderizarModulos();
+        document.getElementById(`content-mod-${modNum}`).classList.add('open');
+        calcularPesoTotal();
+    }
+
+    function actualizarCabecera(modNum) {
+        const modulo = syllabusData[modNum - 1];
+        renderizarModulos();
+        document.getElementById(`content-mod-${modNum}`).classList.add('open');
+    }
+
+    function calcularPesoTotal() {
+        let total = 0;
+        syllabusData.forEach(mod => {
+            mod.evaluations.forEach(ev => {
+                total += ev.weight;
+            });
+        });
+
+        const display = document.getElementById('peso-total-display');
+        const btnGuardar = document.getElementById('btn-guardar');
+
+        display.textContent = total + '%';
+
+        if (total === 100) {
+            display.className = "text-2xl font-black text-[#10B981]";
+            btnGuardar.disabled = false;
+            btnGuardar.classList.remove('opacity-50', 'cursor-not-allowed');
+        } else {
+            display.className = "text-2xl font-black text-red-500";
+            btnGuardar.disabled = true;
+            btnGuardar.classList.add('opacity-50', 'cursor-not-allowed');
+        }
+    }
+
+    function guardarCurso(event) {
+        event.preventDefault();
+
+        const modulosLimpios = syllabusData.map(mod => {
+            return {
+                moduleNumber: mod.moduleNumber,
+                topics: mod.topics.filter(t => t.trim() !== ""),
+                evaluations: mod.evaluations
+            };
+        });
+
+        const payload = {
+            name: document.getElementById('courseName').value.trim(),
+            courseCode: document.getElementById('courseCode').value.trim(),
+            credits: parseInt(document.getElementById('courseCredits').value),
+            modules: modulosLimpios
+        };
+
+        const btn = document.getElementById('btn-guardar');
+        const textOriginal = btn.innerHTML;
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Creando Curso...';
+        btn.disabled = true;
+
+        fetch('/api/courses', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        })
+            .then(response => {
+                if (response.status === 201 || response.ok) {
+                    alert('¡El curso y su sílabo de 18 módulos han sido creados exitosamente!');
+                    window.location.href = 'dashboard.html';
+                } else {
+                    return response.json().then(err => { throw new Error(err.message || 'Error del servidor')});
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert('Hubo un error al guardar el curso. Asegúrate de que la suma de evaluaciones sea exactamente 100%.');
+            })
+            .finally(() => {
+                btn.innerHTML = textOriginal;
+                btn.disabled = false;
+            });
+    }
+</script>
+</body>
+</html>

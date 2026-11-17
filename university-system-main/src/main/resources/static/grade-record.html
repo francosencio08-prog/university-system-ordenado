@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UTP+class :: Registro de Notas</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    
+    <style>
+        body { font-family: 'Lato', sans-serif; background-color: #f8fafc; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+        input[type=number] { -moz-appearance: textfield; }
+    </style>
+</head>
+<body class="text-neutral-02 flex overflow-x-hidden min-h-screen">
+    
+    <aside class="w-[88px] bg-[#000F37] flex flex-col items-center py-5 fixed h-full z-20 shadow-lg">
+        <div class="mb-6 text-white cursor-pointer hover:opacity-80 transition-opacity">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </div>
+
+        <nav class="flex flex-col w-full relative">
+            
+            <a href="dashboard.html" class="flex flex-col items-center justify-center h-[80px] text-[#a5b0c0] hover:text-white transition-colors">
+                <svg width="24" height="24" viewBox="0 0 1024 1024" class="fill-current mb-1"><path d="M853.333 42.667h-576c-81.067 0-149.333 68.267-149.333 149.333v640c0 81.067 68.267 149.333 149.333 149.333h576c25.6 0 42.667-17.067 42.667-42.667v-853.333c0-25.6-17.067-42.667-42.667-42.667zM277.333 128h533.333v554.667h-533.333c-21.333 0-42.667 4.267-64 17.067v-507.733c0-34.133 29.867-64 64-64zM277.333 896c-34.133 0-64-29.867-64-64s29.867-64 64-64h533.333v128h-533.333z"></path></svg>
+                <span class="text-[12px] text-center">Cursos</span>
+            </a>
+
+            <a href="#" class="flex flex-col items-center justify-center h-[80px] text-[#a5b0c0] hover:text-white transition-colors">
+                <svg width="24" height="24" viewBox="0 0 1024 1024" class="fill-current mb-1"><path d="M128 938.667c-12.8 0-21.333-4.267-29.867-12.8-12.8-12.8-17.067-29.867-8.533-42.667l76.8-226.133c-25.6-51.2-38.4-110.933-38.4-166.4 0-153.6 85.333-294.4 226.133-362.667 55.467-29.867 119.467-42.667 179.2-42.667 0 0 0 0 0 0h21.333c209.067 12.8 371.2 174.933 384 379.733v25.6c0 64-12.8 123.733-42.667 183.467-68.267 136.533-209.067 221.867-362.667 221.867-55.467 0-115.2-12.8-166.4-34.133l-226.133 76.8c-4.267 0-8.533 0-12.8 0zM533.333 170.667c-51.2 0-98.133 12.8-140.8 34.133-110.933 55.467-179.2 162.133-179.2 285.867 0 51.2 12.8 98.133 34.133 140.8 4.267 8.533 4.267 21.333 4.267 34.133l-55.467 162.133 162.133-55.467c12.8-4.267 21.333-4.267 34.133 4.267 42.667 21.333 93.867 34.133 140.8 34.133 123.733 0 230.4-68.267 285.867-174.933 21.333-42.667 34.133-93.867 34.133-140.8 0 0 0 0 0 0v-25.6c-8.533-162.133-136.533-290.133-302.933-298.667h-17.067c0 0 0 0 0 0z"></path></svg>
+                <span class="text-[12px] text-center">Chat</span>
+            </a>
+
+            <a href="#" class="flex flex-col items-center justify-center h-[80px] bg-[#e6ebf5] text-[#000F37] relative">
+                <div class="absolute left-0 top-0 bottom-0 w-1 bg-[#f94c61]"></div>
+                <i class="fa-solid fa-upload text-2xl mb-1"></i>
+                <span class="text-[12px] text-center font-bold">Subir Notas</span>
+            </a>
+
+            <a href="ai-review.html" class="flex flex-col items-center justify-center h-[80px] text-[#a5b0c0] hover:text-white transition-colors relative">
+                <div id="badge-docente-revision" class="hidden absolute top-3 right-4 w-2.5 h-2.5 rounded-full bg-yellow-400 animate-pulse shadow-sm z-10 border border-white"></div>
+                <i class="fa-solid fa-user-check text-xl mb-1"></i>
+                <span class="text-[12px] text-center leading-tight">Revisión<br>IA</span>
+            </a>
+            
+        </nav>
+    </aside>
+
+    <div class="ml-[88px] flex-1 flex flex-col h-screen overflow-hidden">
+
+        <header class="bg-white h-[64px] flex items-center justify-between px-6 shadow-sm relative z-10 w-full shrink-0">
+            <div class="flex items-center">
+                <img src="/static/media/new-logo.c86d23e3.svg" class="w-[151px] h-[25px] ml-[24px] object-contain" alt="UTP" onerror="this.src='https://sso.utp.edu.pe/auth/resources/4i3s1/login/utp-pao/images/logo-pao-class.png'">
+            </div>
+
+            <div class="flex items-center space-x-5">
+                <button class="relative text-[#4a4f55] hover:text-[#000F37] transition-colors">
+                    <i class="fa-regular fa-bell text-xl"></i>
+                    <span id="badge-notificaciones" class="hidden absolute -top-1.5 -right-2 bg-[#FABD00] text-[#000f37] text-[9px] font-bold px-1 rounded-full border border-white">
+                        0
+                    </span>
+                </button>
+
+                <div class="relative pl-4 border-l border-gray-200">
+                    <div onclick="toggleDropdown(event)" class="flex items-center space-x-3 cursor-pointer select-none">
+                        <div class="text-right leading-tight hidden md:block">
+                            <p id="user-name-display" class="text-[13px] font-bold text-gray-800">Cargando...</p>
+                            <p id="user-role-display" class="text-[11px] text-gray-500">Cargando...</p>
+                        </div>
+                        <div class="h-10 w-10 flex items-center justify-center">
+                            <img class="rounded-full" width="40" height="40" alt="Avatar" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix&backgroundColor=1db5b2">
+                        </div>
+                        <i class="fa-solid fa-chevron-down text-[10px] text-gray-600"></i>
+                    </div>
+
+                    <div id="logout-dropdown" class="hidden absolute right-0 mt-2 w-44 bg-white rounded-lg shadow-xl py-1 border border-gray-100 z-50">
+                        <button onclick="cerrarSesion()" class="w-full text-left px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 font-bold flex items-center transition-colors rounded-b-lg">
+                            <i class="fa-solid fa-right-from-bracket mr-2"></i> Cerrar Sesión
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="flex-1 p-8 overflow-y-auto w-full max-w-[1200px] mx-auto pb-32">
+            
+            <div class="flex justify-between items-end mb-6 border-b border-gray-200 pb-4">
+                <div>
+                    <h1 class="text-2xl font-black text-[#000F37]">Registro de Calificaciones</h1>
+                    <p class="text-sm text-gray-500 mt-1">Ingresa las notas de la evaluación. Las notas menores a 11.5 activarán automáticamente el Tutor IA.</p>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mb-6 flex flex-col md:flex-row gap-5">
+                <div class="flex-1">
+                    <label class="block text-sm font-bold text-gray-700 mb-1">1. Selecciona tu Sección</label>
+                    <select id="select-seccion" onchange="alSeleccionarSeccion()" class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:border-[#0661fc] bg-gray-50">
+                        <option value="">Cargando mis secciones...</option>
+                    </select>
+                </div>
+                
+                <div class="flex-1">
+                    <label class="block text-sm font-bold text-gray-700 mb-1">2. Selecciona la Evaluación</label>
+                    <select id="select-evaluacion" disabled onchange="alSeleccionarEvaluacion()" class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:border-[#0661fc] bg-gray-50 disabled:opacity-50">
+                        <option value="">Esperando selección de sección...</option>
+                    </select>
+                </div>
+            </div>
+
+            <form id="form-notas" onsubmit="guardarNotasBulk(event)" class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden relative">
+                
+                <div id="overlay-tabla" class="absolute inset-0 bg-white/80 backdrop-blur-sm z-10 flex flex-col items-center justify-center">
+                    <i id="overlay-icon" class="fa-solid fa-list-check text-4xl text-gray-300 mb-3"></i>
+                    <p id="overlay-text" class="text-gray-500 font-bold">Selecciona una sección y evaluación para comenzar.</p>
+                </div>
+
+                <table class="w-full text-sm text-left">
+                    <thead class="text-xs text-gray-500 uppercase bg-gray-50 border-b">
+                        <tr>
+                            <th class="px-6 py-4 w-16 text-center">N°</th>
+                            <th class="px-6 py-4">Estudiante Matriculado</th>
+                            <th class="px-6 py-4 w-48 text-center">Calificación (0 - 20)</th>
+                            <th class="px-6 py-4 w-48 text-center">Estado / IA</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-estudiantes" class="text-gray-700 divide-y divide-gray-100">
+                    </tbody>
+                </table>
+
+                <div class="p-4 bg-gray-50 border-t border-gray-200 flex justify-end">
+                    <button type="submit" id="btn-guardar" class="bg-[#0661fc] hover:bg-blue-700 text-white px-8 py-2.5 rounded font-bold shadow-sm transition-colors flex items-center">
+                        <i class="fa-solid fa-cloud-arrow-up mr-2"></i> Procesar Calificaciones
+                    </button>
+                </div>
+            </form>
+
+        </main>
+    </div>
+
+    <script>
+        let dicEstudiantes = {};
+        let dicCursos = {};
+        let currentEnrollments = []; 
+        let currentEvaluationGrades = []; // Guarda las notas ya existentes
+        let myTeacherId = null; 
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const role = localStorage.getItem('userRole') || 'TEACHER';
+            const username = localStorage.getItem('username') || 'Profesor';
+            
+            myTeacherId = parseInt(localStorage.getItem('teacherId'));
+            
+            document.getElementById('user-name-display').textContent = 'Prof. ' + username;
+            document.getElementById('user-role-display').textContent = role;
+
+            if (role !== 'TEACHER') {
+                alert('Acceso denegado. Vista exclusiva para Docentes.');
+                window.location.href = 'dashboard.html';
+                return;
+            }
+
+            cargarDatosBase();
+        });
+
+        async function cargarDatosBase() {
+            console.log("ID del profesor cargado desde localStorage:", myTeacherId);
+
+            if (!myTeacherId || isNaN(myTeacherId)) {
+                alert("Error crítico: El ID del profesor no se guardó en el navegador. Por favor, cierra sesión y vuelve a iniciarla.");
+                return;
+            }
+
+            try {
+
+                const [estudiantes, cursos, misSecciones] = await Promise.all([
+                    fetch('/api/students').then(r => r.json()),
+                    fetch('/api/courses').then(r => r.json()),
+                    fetch(`/api/sections/teacher/${myTeacherId}`).then(r => r.json())
+                ]);
+
+                console.log("Secciones de este profesor devueltas por el servidor:", misSecciones);
+
+
+                estudiantes.forEach(s => dicEstudiantes[s.id] = `${s.lastName}, ${s.firstName} (${s.enrollmentCode || 'N/A'})`);
+                cursos.forEach(c => dicCursos[c.id] = c.name);
+
+                const selectSeccion = document.getElementById('select-seccion');
+                selectSeccion.innerHTML = '<option value="">-- Elija una Sección --</option>';
+
+
+                if (misSecciones.length === 0) {
+                    selectSeccion.innerHTML = '<option value="">No tienes secciones asignadas.</option>';
+                    return;
+                }
+
+                misSecciones.forEach(sec => {
+                    const nombreCurso = dicCursos[sec.courseId] || 'Curso';
+                    selectSeccion.insertAdjacentHTML('beforeend',
+                        `<option value="${sec.id}" data-course-id="${sec.courseId}">[${sec.sectionName}] - ${nombreCurso}</option>`
+                    );
+                });
+
+            } catch (error) {
+                console.error("Error al cargar datos base:", error);
+                alert("Error de conexión con el servidor. Asegúrate de reiniciar Spring Boot para activar el endpoint /api/sections/teacher/{id}");
+            }
+        }
+
+        async function alSeleccionarSeccion() {
+            const selectSeccion = document.getElementById('select-seccion');
+            const sectionId = selectSeccion.value;
+            const selectEvaluacion = document.getElementById('select-evaluacion');
+            
+            if (!sectionId) {
+                selectEvaluacion.innerHTML = '<option value="">Esperando selección de sección...</option>';
+                selectEvaluacion.disabled = true;
+                bloquearTabla("Selecciona una sección y evaluación para comenzar.");
+                return;
+            }
+
+            const courseId = selectSeccion.options[selectSeccion.selectedIndex].getAttribute('data-course-id');
+            
+            selectEvaluacion.innerHTML = '<option value="">Cargando evaluaciones...</option>';
+            selectEvaluacion.disabled = true;
+            bloquearTabla("Cargando alumnos...");
+
+            try {
+                const courseDetails = await fetch(`/api/courses/${courseId}/details`).then(r => r.json());
+                selectEvaluacion.innerHTML = '<option value="">-- Elija la Evaluación --</option>';
+                
+                let hayEvaluaciones = false;
+                courseDetails.modules.forEach(mod => {
+                    mod.evaluations.forEach(ev => {
+                        hayEvaluaciones = true;
+                        selectEvaluacion.insertAdjacentHTML('beforeend', 
+                            `<option value="${ev.id}">${ev.title} (Peso: ${ev.weight}%)</option>`
+                        );
+                    });
+                });
+
+                if(!hayEvaluaciones) {
+                    selectEvaluacion.innerHTML = '<option value="">Este curso no tiene evaluaciones programadas.</option>';
+                    bloquearTabla("No hay evaluaciones programadas.");
+                    return;
+                }
+                
+                selectEvaluacion.disabled = false;
+
+                const todasLasMatriculas = await fetch('/api/enrollments').then(r => r.json());
+                currentEnrollments = todasLasMatriculas.filter(e => e.sectionId == sectionId);
+                
+                bloquearTabla("Selecciona una evaluación de la lista superior.");
+
+            } catch (error) {
+                console.error(error);
+                alert("Error al obtener la estructura del curso.");
+            }
+        }
+
+        async function alSeleccionarEvaluacion() {
+            const evaluationId = document.getElementById('select-evaluacion').value;
+            if(!evaluationId) {
+                bloquearTabla("Selecciona una sección y evaluación para comenzar.");
+                return;
+            }
+            
+            bloquearTabla("Buscando si hay notas previas registradas...", true);
+
+            try {
+                // Buscamos si ya hay notas subidas para esta evaluación
+                const todasLasNotas = await fetch('/api/grades').then(r => r.json()).catch(() => []);
+                currentEnrollments.forEach(enroll => {
+                    // Filtramos si este alumno en esta matricula ya tiene nota para esta evaluacion
+                    const notaGuardada = todasLasMatriculas.find(n => n.enrollmentId === enroll.id && n.evaluationId == evaluationId);
+                    enroll.savedGrade = notaGuardada ? notaGuardada.value : null;
+                });
+                
+                desbloquearTablaYRenderizarAlumnos();
+            } catch (error) {
+                desbloquearTablaYRenderizarAlumnos();
+            }
+        }
+
+        function bloquearTabla(mensaje = "Selecciona una sección y evaluación para comenzar.", isSpinning = false) {
+            const overlay = document.getElementById('overlay-tabla');
+            overlay.classList.remove('hidden');
+            document.getElementById('tabla-estudiantes').innerHTML = '';
+            
+            const icono = isSpinning ? '<i class="fa-solid fa-spinner fa-spin text-4xl text-[#0661fc] mb-3"></i>' : '<i class="fa-solid fa-list-check text-4xl text-gray-300 mb-3"></i>';
+            overlay.innerHTML = `${icono}<p class="text-gray-500 font-bold">${mensaje}</p>`;
+        }
+
+        function desbloquearTablaYRenderizarAlumnos() {
+            document.getElementById('overlay-tabla').classList.add('hidden');
+            const tbody = document.getElementById('tabla-estudiantes');
+            tbody.innerHTML = '';
+
+            if(currentEnrollments.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" class="text-center py-8 text-gray-500 font-bold">No hay alumnos matriculados en esta sección.</td></tr>';
+                document.getElementById('btn-guardar').disabled = true;
+                document.getElementById('btn-guardar').classList.add('opacity-50');
+                return;
+            }
+
+            document.getElementById('btn-guardar').disabled = false;
+            document.getElementById('btn-guardar').classList.remove('opacity-50');
+
+            currentEnrollments.forEach((enroll, index) => {
+                const nombreAlumno = dicEstudiantes[enroll.studentId] || `Estudiante Desconocido (ID: ${enroll.studentId})`;
+                
+                let inputHtml = "";
+                let statusHtml = "";
+                let bgRow = "";
+
+                // Si el alumno ya tiene nota en la base de datos (ReadOnly)
+                if (enroll.savedGrade !== null && enroll.savedGrade !== undefined) {
+                    const nota = parseFloat(enroll.savedGrade);
+                    bgRow = "bg-gray-50 opacity-80";
+                    
+                    if (nota < 11.5) {
+                        inputHtml = `<input type="text" disabled value="${nota}" class="w-24 text-center font-black text-lg border-2 border-red-200 text-red-400 bg-red-50/50 rounded p-1 cursor-not-allowed">`;
+                        statusHtml = `<span class="bg-yellow-100 text-yellow-700 text-[10px] font-black px-2 py-1 rounded border border-yellow-200"><i class="fa-solid fa-robot mr-1"></i>IA EN PROCESO</span>`;
+                    } else {
+                        inputHtml = `<input type="text" disabled value="${nota}" class="w-24 text-center font-black text-lg border-2 border-green-200 text-green-600 bg-green-50/50 rounded p-1 cursor-not-allowed">`;
+                        statusHtml = `<span class="text-green-500 text-xs font-bold"><i class="fa-solid fa-check-double mr-1"></i> Calificado</span>`;
+                    }
+                } else {
+                    // El alumno no tiene nota, mostramos el input editable
+                    bgRow = "hover:bg-blue-50";
+                    inputHtml = `<input type="number" data-enrollment-id="${enroll.id}" class="input-nota w-24 text-center font-black text-lg border-2 border-gray-300 rounded p-1 focus:outline-none focus:border-[#0661fc] transition-colors" min="0" max="20" step="0.1" placeholder="-" oninput="evaluarNotaVisual(this)">`;
+                    statusHtml = `<span class="text-gray-300 text-xs italic">Pendiente</span>`;
+                }
+                
+                const fila = `
+                    <tr class="${bgRow} transition-colors">
+                        <td class="px-6 py-3 text-center font-bold text-gray-400">${index + 1}</td>
+                        <td class="px-6 py-3 font-bold text-[#000F37] uppercase text-xs">${nombreAlumno}</td>
+                        <td class="px-6 py-3 text-center">${inputHtml}</td>
+                        <td class="px-6 py-3 text-center" id="ai-status-${enroll.id}">${statusHtml}</td>
+                    </tr>
+                `;
+                tbody.insertAdjacentHTML('beforeend', fila);
+            });
+        }
+
+        function evaluarNotaVisual(inputElement) {
+            const nota = parseFloat(inputElement.value);
+            const enrollmentId = inputElement.getAttribute('data-enrollment-id');
+            const statusCell = document.getElementById(`ai-status-${enrollmentId}`);
+
+            if (nota < 0) inputElement.value = 0;
+            if (nota > 20) inputElement.value = 20;
+
+            if (isNaN(nota)) {
+                inputElement.className = "input-nota w-24 text-center font-black text-lg border-2 border-gray-300 rounded p-1 focus:outline-none focus:border-[#0661fc] transition-colors";
+                statusCell.innerHTML = '<span class="text-gray-300 text-xs italic">Pendiente</span>';
+                return;
+            }
+
+            if (nota < 11.5) {
+                inputElement.className = "input-nota w-24 text-center font-black text-lg border-2 border-red-500 text-red-600 bg-red-50 rounded p-1 focus:outline-none focus:border-red-600 transition-colors";
+                statusCell.innerHTML = '<span class="bg-yellow-100 text-yellow-800 text-[10px] font-black px-2 py-1 rounded shadow-sm border border-yellow-200"><i class="fa-solid fa-robot mr-1"></i>IA SE ACTIVARÁ</span>';
+            } else {
+                inputElement.className = "input-nota w-24 text-center font-black text-lg border-2 border-green-500 text-green-700 bg-green-50 rounded p-1 focus:outline-none focus:border-green-600 transition-colors";
+                statusCell.innerHTML = '<span class="text-green-500 text-xs font-bold"><i class="fa-solid fa-check mr-1"></i> Aprobado</span>';
+            }
+        }
+
+        async function guardarNotasBulk(event) {
+            event.preventDefault();
+            
+            const evaluationId = document.getElementById('select-evaluacion').value;
+            const inputsNotas = document.querySelectorAll('.input-nota'); // Solo obtiene los editables
+            
+            let gradesPayload = [];
+            let hayVacias = false;
+
+            inputsNotas.forEach(input => {
+                const val = parseFloat(input.value);
+                if (isNaN(val)) {
+                    hayVacias = true;
+                } else {
+                    gradesPayload.push({
+                        enrollmentId: parseInt(input.getAttribute('data-enrollment-id')),
+                        value: val
+                    });
+                }
+            });
+
+            if (gradesPayload.length === 0) {
+                alert("No has ingresado ninguna nota nueva.");
+                return;
+            }
+
+            if (hayVacias) {
+                if(!confirm("Faltan notas por ingresar. Si continúas, los alumnos en blanco no serán calificados y podrás calificarlos después. ¿Deseas proceder?")) return;
+            }
+
+            const payloadFinal = {
+                evaluationId: parseInt(evaluationId),
+                grades: gradesPayload
+            };
+
+            const btn = document.getElementById('btn-guardar');
+            const textoOriginal = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Procesando notas y motor IA...';
+            btn.disabled = true;
+
+            try {
+                const response = await fetch('/api/grades/bulk', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payloadFinal)
+                });
+
+                if (response.ok) {
+                    alert("¡Las calificaciones se han registrado exitosamente!\n\nSi hubo notas menores a 11.5, el motor de IA ya está procesando las recomendaciones para tu bandeja de revisión.");
+                    // Refrescamos la tabla para que se bloqueen los inputs
+                    alSeleccionarEvaluacion();
+                } else {
+                    const err = await response.text();
+                    throw new Error(err || "Error desconocido");
+                }
+            } catch (error) {
+                console.error(error);
+                alert("Error al guardar: " + error.message);
+            } finally {
+                btn.innerHTML = textoOriginal;
+                btn.disabled = false;
+            }
+        }
+
+        function toggleDropdown(event) {
+            event.stopPropagation();
+            const dropdown = document.getElementById('logout-dropdown');
+            dropdown.classList.toggle('hidden');
+        }
+
+        function cerrarSesion() {
+            localStorage.clear();
+            window.location.href = 'login.html';
+        }
+
+        window.addEventListener('click', () => {
+            const dropdown = document.getElementById('logout-dropdown');
+            if (dropdown && !dropdown.classList.contains('hidden')) {
+                dropdown.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

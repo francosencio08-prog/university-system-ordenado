@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UTP+class :: Gestión de Secciones</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+    <style>
+        body { font-family: 'Lato', sans-serif; background-color: #f8fafc; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+    </style>
+</head>
+<body class="text-neutral-02 flex overflow-x-hidden min-h-screen">
+
+<aside class="w-[88px] bg-[#000F37] flex flex-col items-center py-5 fixed h-full z-20">
+    <div class="mb-6 text-white cursor-pointer hover:opacity-80 transition-opacity">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+    </div>
+
+    <nav class="flex flex-col w-full relative">
+
+        <a href="dashboard.html" class="flex flex-col items-center justify-center h-[80px] text-[#a5b0c0] hover:text-white transition-colors">
+            <svg width="24" height="24" viewBox="0 0 1024 1024" class="fill-current mb-1"><path d="M853.333 42.667h-576c-81.067 0-149.333 68.267-149.333 149.333v640c0 81.067 68.267 149.333 149.333 149.333h576c25.6 0 42.667-17.067 42.667-42.667v-853.333c0-25.6-17.067-42.667-42.667-42.667zM277.333 128h533.333v554.667h-533.333c-21.333 0-42.667 4.267-64 17.067v-507.733c0-34.133 29.867-64 64-64zM277.333 896c-34.133 0-64-29.867-64-64s29.867-64 64-64h533.333v128h-533.333z"></path></svg>
+            <span class="text-[12px] text-center">Cursos</span>
+        </a>
+
+        <a href="#" class="flex flex-col items-center justify-center h-[80px] text-[#a5b0c0] hover:text-white transition-colors">
+            <svg width="24" height="24" viewBox="0 0 1024 1024" class="fill-current mb-1"><path d="M128 938.667c-12.8 0-21.333-4.267-29.867-12.8-12.8-12.8-17.067-29.867-8.533-42.667l76.8-226.133c-25.6-51.2-38.4-110.933-38.4-166.4 0-153.6 85.333-294.4 226.133-362.667 55.467-29.867 119.467-42.667 179.2-42.667 0 0 0 0 0 0h21.333c209.067 12.8 371.2 174.933 384 379.733v25.6c0 64-12.8 123.733-42.667 183.467-68.267 136.533-209.067 221.867-362.667 221.867-55.467 0-115.2-12.8-166.4-34.133l-226.133 76.8c-4.267 0-8.533 0-12.8 0zM533.333 170.667c-51.2 0-98.133 12.8-140.8 34.133-110.933 55.467-179.2 162.133-179.2 285.867 0 51.2 12.8 98.133 34.133 140.8 4.267 8.533 4.267 21.333 4.267 34.133l-55.467 162.133 162.133-55.467c12.8-4.267 21.333-4.267 34.133 4.267 42.667 21.333 93.867 34.133 140.8 34.133 123.733 0 230.4-68.267 285.867-174.933 21.333-42.667 34.133-93.867 34.133-140.8 0 0 0 0 0 0v-25.6c-8.533-162.133-136.533-290.133-302.933-298.667h-17.067c0 0 0 0 0 0z"></path></svg>
+            <span class="text-[12px] text-center">Chat</span>
+        </a>
+
+        <a href="course-registration.html" class="flex flex-col items-center justify-center h-[80px] text-[#a5b0c0] hover:text-white transition-colors">
+            <i class="fa-solid fa-plus-circle text-xl mb-1"></i>
+            <span class="text-[12px] text-center leading-tight">Crear Curso</span>
+        </a>
+
+        <a href="#" class="flex flex-col items-center justify-center h-[80px] bg-[#e6ebf5] text-[#000F37] relative">
+            <div class="absolute left-0 top-0 bottom-0 w-1 bg-[#f94c61]"></div>
+            <i class="fa-solid fa-puzzle-piece text-2xl mb-1"></i>
+            <span class="text-[12px] text-center font-bold">Secciones</span>
+        </a>
+
+        <a href="enrollment-registration.html" class="flex flex-col items-center justify-center h-[80px] text-[#a5b0c0] hover:text-white transition-colors">
+            <i class="fa-solid fa-address-book text-xl mb-1"></i>
+            <span class="text-[12px] text-center">Matrículas</span>
+        </a>
+
+        <a href="student-registration.html" class="flex flex-col items-center justify-center h-[80px] text-[#a5b0c0] hover:text-white transition-colors">
+            <i class="fa-solid fa-users-gear text-xl mb-1"></i>
+            <span class="text-[12px] text-center">Estudiantes</span>
+        </a>
+
+        <a href="teacher-registration.html" class="flex flex-col items-center justify-center h-[80px] text-[#a5b0c0] hover:text-white transition-colors">
+            <i class="fa-solid fa-chalkboard-user text-xl mb-1"></i>
+            <span class="text-[12px] text-center">Docentes</span>
+        </a>
+
+        <a href="ai-settings.html" class="flex flex-col items-center justify-center h-[80px] text-[#a5b0c0] hover:text-white transition-colors">
+            <i class="fa-solid fa-microchip text-xl mb-1"></i>
+            <span class="text-[12px] text-center">Admin IA</span>
+        </a>
+
+    </nav>
+</aside>
+
+<div class="ml-[88px] flex-1 flex flex-col h-screen overflow-hidden">
+
+    <header class="bg-white h-[64px] flex items-center justify-between px-6 shadow-sm relative z-10 w-full shrink-0">
+        <div class="flex items-center">
+            <img src="/static/media/new-logo.c86d23e3.svg" class="w-[151px] h-[25px] ml-[24px] object-contain" alt="UTP" onerror="this.src='https://sso.utp.edu.pe/auth/resources/4i3s1/login/utp-pao/images/logo-pao-class.png'">
+        </div>
+
+        <div class="flex items-center space-x-5">
+            <button class="relative text-[#4a4f55] hover:text-[#000F37] transition-colors">
+                <i class="fa-regular fa-bell text-xl"></i>
+                <span id="badge-notificaciones" class="hidden absolute -top-1.5 -right-2 bg-[#FABD00] text-[#000f37] text-[9px] font-bold px-1 rounded-full border border-white">
+                        0
+                    </span>
+            </button>
+
+            <div class="relative pl-4 border-l border-gray-200">
+                <div onclick="toggleDropdown(event)" class="flex items-center space-x-3 cursor-pointer select-none">
+                    <div class="text-right leading-tight hidden md:block">
+                        <p id="user-name-display" class="text-[13px] font-bold text-gray-800">Cargando...</p>
+                        <p id="user-role-display" class="text-[11px] text-gray-500">Cargando...</p>
+                    </div>
+                    <div class="h-10 w-10 flex items-center justify-center">
+                        <img class="rounded-full" width="40" height="40" alt="Avatar" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix&backgroundColor=1db5b2">
+                    </div>
+                    <i class="fa-solid fa-chevron-down text-[10px] text-gray-600"></i>
+                </div>
+
+                <div id="logout-dropdown" class="hidden absolute right-0 mt-2 w-44 bg-white rounded-lg shadow-xl py-1 border border-gray-100 z-50">
+                    <button onclick="cerrarSesion()" class="w-full text-left px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 font-bold flex items-center transition-colors rounded-b-lg">
+                        <i class="fa-solid fa-right-from-bracket mr-2"></i> Cerrar Sesión
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-1 p-8 overflow-y-auto w-full max-w-[1400px] mx-auto">
+
+        <div class="flex justify-between items-end mb-6 border-b border-gray-200 pb-4">
+            <div>
+                <h1 class="text-2xl font-black text-[#000F37]">Gestión de Secciones</h1>
+                <p class="text-sm text-gray-500 mt-1">Abre nuevas aulas, asigna cursos y profesores a una sección.</p>
+            </div>
+            <button onclick="abrirModalCrear()" class="bg-[#0661fc] hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg font-bold shadow-sm transition-colors flex items-center">
+                <i class="fa-solid fa-plus mr-2"></i> Abrir Nueva Sección
+            </button>
+        </div>
+
+        <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-200 mb-6 flex items-center space-x-4">
+            <label class="text-sm font-bold text-gray-700 whitespace-nowrap"><i class="fa-solid fa-filter text-gray-400 mr-2"></i> Filtrar por Curso:</label>
+            <select id="filtro-curso" onchange="aplicarFiltro()" class="w-full max-w-md border border-gray-300 rounded p-2 text-sm focus:outline-none focus:border-[#0661fc] bg-gray-50">
+                <option value="ALL">Mostrar Todas las Secciones</option>
+            </select>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+            <table class="w-full text-sm text-left">
+                <thead class="text-xs text-gray-500 uppercase bg-gray-50 border-b">
+                <tr>
+                    <th class="px-6 py-4 w-32">Cód. Sección</th>
+                    <th class="px-6 py-4">Curso Asignado</th>
+                    <th class="px-6 py-4">Docente a Cargo</th>
+                    <th class="px-6 py-4 text-center">Estado</th>
+                </tr>
+                </thead>
+                <tbody id="tabla-secciones" class="text-gray-700 divide-y divide-gray-100">
+                <tr><td colspan="4" class="text-center py-8 text-gray-500"><i class="fa-solid fa-spinner fa-spin mr-2"></i>Cargando secciones...</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+    </main>
+</div>
+
+<div id="modal-crear" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-lg shadow-2xl w-full max-w-lg flex flex-col">
+
+        <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center bg-gray-50 rounded-t-lg">
+            <h3 class="text-lg font-bold text-[#000F37]"><i class="fa-solid fa-puzzle-piece text-[#0661fc] mr-2"></i> Aperturar Sección</h3>
+            <button onclick="cerrarModal()" class="text-gray-400 hover:text-gray-700"><i class="fa-solid fa-xmark text-xl"></i></button>
+        </div>
+
+        <form id="form-crear-seccion" onsubmit="crearSeccion(event)" class="p-6">
+
+            <div class="space-y-5">
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-1">Nombre/Código de Sección <span class="text-red-500">*</span></label>
+                    <input type="text" id="sectionName" required placeholder="Ej. 15344" class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:border-[#0661fc]">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-1">Seleccionar Curso <span class="text-red-500">*</span></label>
+                    <select id="courseId" required class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:border-[#0661fc]">
+                        <option value="">Cargando cursos...</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-1">Asignar Docente <span class="text-red-500">*</span></label>
+                    <select id="teacherId" required class="w-full border border-gray-300 rounded p-2 focus:outline-none focus:border-[#0661fc]">
+                        <option value="">Cargando docentes...</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="mt-8 flex justify-end space-x-3 pt-4 border-t border-gray-100">
+                <button type="button" onclick="cerrarModal()" class="text-gray-600 bg-white border border-gray-300 hover:bg-gray-100 px-4 py-2 rounded font-bold transition-colors">Cancelar</button>
+                <button type="submit" id="btn-submit" class="bg-[#0661fc] hover:bg-blue-700 text-white px-6 py-2 rounded font-bold shadow-sm transition-colors flex items-center">
+                    <i class="fa-solid fa-save mr-2"></i> Crear Sección
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    let dicCursos = {};
+    let dicDocentes = {};
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const role = localStorage.getItem('userRole') || 'ADMIN';
+        const username = localStorage.getItem('username') || 'Administrador';
+
+        document.getElementById('user-name-display').textContent = 'Hola, ' + username;
+        document.getElementById('user-role-display').textContent = role;
+
+        if (role !== 'ADMIN') {
+            alert('Acceso denegado.');
+            window.location.href = 'dashboard.html';
+            return;
+        }
+
+        cargarDatosMaestros();
+    });
+
+    function cargarDatosMaestros() {
+        Promise.all([
+            fetch('/api/courses').then(res => res.json()),
+            fetch('/api/teachers').then(res => res.json())
+        ])
+            .then(([cursos, docentes]) => {
+                const selectCurso = document.getElementById('courseId');
+                const filtroCurso = document.getElementById('filtro-curso');
+                const selectTeacher = document.getElementById('teacherId');
+
+                selectCurso.innerHTML = '<option value="">Seleccione un curso...</option>';
+                cursos.forEach(c => {
+                    dicCursos[c.id] = c.name;
+                    const option = `<option value="${c.id}">${c.name}</option>`;
+                    selectCurso.insertAdjacentHTML('beforeend', option);
+                    filtroCurso.insertAdjacentHTML('beforeend', option);
+                });
+
+                selectTeacher.innerHTML = '<option value="">Seleccione un docente...</option>';
+                docentes.forEach(t => {
+                    dicDocentes[t.id] = `${t.firstName} ${t.lastName}`;
+                    selectTeacher.insertAdjacentHTML('beforeend', `<option value="${t.id}">${t.firstName} ${t.lastName}</option>`);
+                });
+
+                cargarSecciones('ALL');
+            })
+            .catch(err => {
+                console.error("Falta crear el endpoint GET /api/courses en el controlador", err);
+                document.getElementById('tabla-secciones').innerHTML = '<tr><td colspan="4" class="text-center text-red-500 py-8">Falta el endpoint GET /api/courses.</td></tr>';
+            });
+    }
+
+    function aplicarFiltro() {
+        const courseId = document.getElementById('filtro-curso').value;
+        cargarSecciones(courseId);
+    }
+
+    function cargarSecciones(courseIdParam) {
+        const tbody = document.getElementById('tabla-secciones');
+        tbody.innerHTML = '<tr><td colspan="4" class="text-center py-8 text-gray-500"><i class="fa-solid fa-spinner fa-spin mr-2"></i>Buscando...</td></tr>';
+
+        const endpoint = (courseIdParam === 'ALL')
+            ? '/api/sections'
+            : `/api/sections/course/${courseIdParam}`;
+
+        fetch(endpoint)
+            .then(response => response.json())
+            .then(data => {
+                tbody.innerHTML = '';
+                if(data.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="4" class="text-center py-8 text-gray-500">No hay secciones registradas para esta búsqueda.</td></tr>';
+                    return;
+                }
+
+                data.forEach(sec => {
+                    const nombreCurso = dicCursos[sec.courseId] || `Curso ID: ${sec.courseId}`;
+                    const nombreProfesor = dicDocentes[sec.teacherId] || `Docente ID: ${sec.teacherId}`;
+
+                    const fila = `
+                        <tr class="hover:bg-blue-50 transition-colors border-b border-gray-100">
+                            <td class="px-6 py-4 font-black text-[#000F37] text-lg">${sec.sectionName}</td>
+                            <td class="px-6 py-4 font-bold text-gray-700"><i class="fa-solid fa-book text-gray-400 mr-2"></i>${nombreCurso}</td>
+                            <td class="px-6 py-4 text-gray-600"><i class="fa-solid fa-chalkboard-user text-gray-400 mr-2"></i>${nombreProfesor}</td>
+                            <td class="px-6 py-4 text-center">
+                                <span class="bg-green-100 text-green-800 text-[10px] font-bold px-2 py-1 rounded">ACTIVA</span>
+                            </td>
+                        </tr>
+                    `;
+                    tbody.insertAdjacentHTML('beforeend', fila);
+                });
+            })
+            .catch(error => {
+                console.error("Error al cargar secciones", error);
+            });
+    }
+
+    function abrirModalCrear() {
+        document.getElementById('form-crear-seccion').reset();
+        document.getElementById('modal-crear').classList.remove('hidden');
+    }
+
+    function cerrarModal() {
+        document.getElementById('modal-crear').classList.add('hidden');
+    }
+
+    function crearSeccion(event) {
+        event.preventDefault();
+
+        const btn = document.getElementById('btn-submit');
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Abriendo Sección...';
+        btn.disabled = true;
+
+        const payload = {
+            sectionName: document.getElementById('sectionName').value.trim(),
+            courseId: parseInt(document.getElementById('courseId').value),
+            teacherId: parseInt(document.getElementById('teacherId').value)
+        };
+
+        fetch('/api/sections', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        })
+            .then(response => {
+                if (response.ok) {
+                    cerrarModal();
+                    aplicarFiltro();
+                } else {
+                    throw new Error('Error al crear');
+                }
+            })
+            .catch(error => alert('Ocurrió un error al crear la sección.'))
+            .finally(() => {
+                btn.innerHTML = '<i class="fa-solid fa-save mr-2"></i> Crear Sección';
+                btn.disabled = false;
+            });
+    }
+
+    function toggleDropdown(event) {
+        event.stopPropagation();
+        const dropdown = document.getElementById('logout-dropdown');
+        dropdown.classList.toggle('hidden');
+    }
+
+    function cerrarSesion() {
+        localStorage.clear();
+        window.location.href = 'login.html';
+    }
+
+    window.addEventListener('click', () => {
+        const dropdown = document.getElementById('logout-dropdown');
+        if (dropdown && !dropdown.classList.contains('hidden')) {
+            dropdown.classList.add('hidden');
+        }
+    });;
+</script>
+</body>
+</html>
